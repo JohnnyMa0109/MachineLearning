@@ -20,11 +20,13 @@ function [model] = svmTrain(X, Y, C, kernelFunction, ...
 %
 %
 
-if ~exist('tol', 'var') || isempty(tol)	% 阈值
+% threshold
+if ~exist('tol', 'var') || isempty(tol)	
     tol = 1e-3;							
 end
 
-if ~exist('max_passes', 'var') || isempty(max_passes) % 迭代次数
+% iterate
+if ~exist('max_passes', 'var') || isempty(max_passes) 
 	max_passes = 5;
 end
 
@@ -53,13 +55,13 @@ H = 0;
 if strcmp(func2str(kernelFunction), 'linearKernel')
     % Vectorized computation for the Linear Kernel
     % This is equivalent to computing the kernel on every pair of examples
-    K = X*X';
+    K = X*X'; % xi^2 + li^2 
 elseif strfind(func2str(kernelFunction), 'gaussianKernel')
     % Vectorized RBF Kernel
     % This is equivalent to computing the kernel on every pair of examples
     X2 = sum(X.^2, 2); % xi^2 + li^2 
-    K = bsxfun(@plus, X2, bsxfun(@plus, X2', - 2 * (X * X')));    
-    K = kernelFunction(1, 0) .^ K;
+    K = bsxfun(@plus, X2, bsxfun(@plus, X2', - 2 * (X * X'))); % X2 + X2' - 2*(X*X') the distance between every dot pairs  
+    K = kernelFunction(1, 0) .^ K; % exp(-1 * K / (2 * sigma ^ 2))
 else
     % Pre-compute the Kernel Matrix
     % The following can be slow due to the lack of vectorization

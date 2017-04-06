@@ -21,9 +21,9 @@ for iter = 1:num_iters
        h_cost(i) = (h_theta(i) - y(i));
     end    
       
-    X_j = alpha / m * h_cost * X;
+    theta_j = alpha / m * h_cost * X;
     
-    theta = theta - X_j';
+    theta = theta - theta_j';
     % ============================================================
 
     % Save the cost J in every iteration    

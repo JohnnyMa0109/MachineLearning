@@ -36,6 +36,7 @@ for i = 1 : m
    for j = 1 : num_labels
       if(h(i, j) == notation(i))
           p(i) = j;
+      end
    end
 end
 

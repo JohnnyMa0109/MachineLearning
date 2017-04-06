@@ -39,7 +39,7 @@ imagesc(Y);
 ylabel('Movies');
 xlabel('Users');
 
-fprintf('\nProgram paused. Press enter to continue.\n');
+% fprintf('\nProgram paused. Press enter to continue.\n');
 % pause;
 
 %% ============ Part 2: Collaborative Filtering Cost Function ===========
@@ -65,7 +65,7 @@ J = cofiCostFunc([X(:) ; Theta(:)], Y, R, num_users, num_movies, ...
 fprintf(['Cost at loaded parameters: %f '...
          '\n(this value should be about 22.22)\n'], J);
 
-fprintf('\nProgram paused. Press enter to continue.\n');
+% fprintf('\nProgram paused. Press enter to continue.\n');
 % pause;
 
 
@@ -79,7 +79,7 @@ fprintf('\nChecking Gradients (without regularization) ... \n');
 %  Check gradients by running checkNNGradients
 checkCostFunction;
 
-fprintf('\nProgram paused. Press enter to continue.\n');
+% fprintf('\nProgram paused. Press enter to continue.\n');
 % pause;
 
 
@@ -111,7 +111,7 @@ fprintf('\nChecking Gradients (with regularization) ... \n');
 %  Check gradients by running checkNNGradients
 checkCostFunction(1.5);
 
-fprintf('\nProgram paused. Press enter to continue.\n');
+% fprintf('\nProgram paused. Press enter to continue.\n');
 % pause;
 
 
@@ -153,7 +153,7 @@ for i = 1:length(my_ratings)
     end
 end
 
-fprintf('\nProgram paused. Press enter to continue.\n');
+% fprintf('\nProgram paused. Press enter to continue.\n');
 % pause;
 
 
@@ -207,7 +207,7 @@ Theta = reshape(theta(num_movies*num_features+1:end), ...
 
 fprintf('Recommender system learning completed.\n');
 
-fprintf('\nProgram paused. Press enter to continue.\n');
+% fprintf('\nProgram paused. Press enter to continue.\n');
 % pause;
 
 %% ================== Part 8: Recommendation for you ====================

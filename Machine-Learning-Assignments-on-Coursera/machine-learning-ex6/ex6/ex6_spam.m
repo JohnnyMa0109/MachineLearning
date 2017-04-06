@@ -37,7 +37,7 @@ fprintf('Word Indices: \n');
 fprintf(' %d', word_indices);
 fprintf('\n\n');
 
-fprintf('Program paused. Press enter to continue.\n');
+% fprintf('Program paused. Press enter to continue.\n');
 % pause;
 
 %% ==================== Part 2: Feature Extraction ====================
@@ -56,7 +56,7 @@ features      = emailFeatures(word_indices);
 fprintf('Length of feature vector: %d\n', length(features));
 fprintf('Number of non-zero entries: %d\n', sum(features > 0));
 
-fprintf('Program paused. Press enter to continue.\n');
+% fprintf('Program paused. Press enter to continue.\n');
 % pause;
 
 %% =========== Part 3: Train Linear SVM for Spam Classification ========
@@ -111,7 +111,7 @@ for i = 1:15
 end
 
 fprintf('\n\n');
-fprintf('\nProgram paused. Press enter to continue.\n');
+% fprintf('\nProgram paused. Press enter to continue.\n');
 % pause;
 
 %% =================== Part 6: Try Your Own Emails =====================
