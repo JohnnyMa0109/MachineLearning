@@ -1,5 +1,5 @@
 # Contents
-The exercises code of UFLDL http://ufldl.stanford.edu/wiki/index.php/UFLDL_Tutorial
+The exercises code of UFLDL, please check the README in every dir to get more information. 
 # Link
-Please check the README in every dir.
+http://ufldl.stanford.edu/wiki/index.php/UFLDL_Tutorial
  
