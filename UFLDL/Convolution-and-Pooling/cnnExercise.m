@@ -148,7 +148,15 @@ stepSize = 50;
 assert(mod(hiddenSize, stepSize) == 0, 'stepSize should divide hiddenSize');
 
 load stlTrainSubset.mat % loads numTrainImages, trainImages, trainLabels
-load stlTestSubset.mat  % loads numTestImages,  testImages,  testLabels
+% load stlTestSubset.mat  % loads numTestImages,  testImages,  testLabels
+load stlTestSubsetParams.mat  % loads numTestImages,  testLabels
+load stlTestSubsetImages1.mat  % loads testImages 1-1600
+load stlTestSubsetImages2.mat  % loads testImages 1601-3200
+testImagesSize = size(testImages1);
+testImages = zeros(testImagesSize(1), testImagesSize(2), ...
+    testImagesSize(3), 2*testImagesSize(4));
+testImages(:, :, :, 1:1600) = testImages1;
+testImages(:, :, :, 1601:3200) = testImages2;
 
 pooledFeaturesTrain = zeros(hiddenSize, numTrainImages, ...
     floor((imageDim - patchDim + 1) / poolDim), ...
