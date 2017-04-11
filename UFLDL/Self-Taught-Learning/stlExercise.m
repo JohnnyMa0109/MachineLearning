@@ -31,8 +31,8 @@ maxIter = 400;
 %  change it.
 
 % Load MNIST database files
-mnistData   = loadMNISTImages('mnist/train-images-idx3-ubyte');
-mnistLabels = loadMNISTLabels('mnist/train-labels-idx1-ubyte');
+mnistData   = loadMNISTImages('train-images-idx3-ubyte');
+mnistLabels = loadMNISTLabels('train-labels-idx1-ubyte');
 
 % Set Unlabeled Set (All Images)
 
@@ -70,14 +70,15 @@ theta = initializeParameters(hiddenSize, inputSize);
 %  unlabeledTrainingImages
 
 opttheta = theta; 
-
-
-
-
-
-
-
-
+addpath minFunc/
+options.Method = 'lbfgs';
+options.maxIter = 400;
+options.display = 'on';
+[opttheta, cost] = minFunc( @(p) sparseAutoencoderCost(p, ...
+                                   inputSize, hiddenSize, ...
+                                   lambda, sparsityParam, ...
+                                   beta, unlabeledData), ...
+                              opttheta, options);
 
 %% -----------------------------------------------------
                           
@@ -110,14 +111,8 @@ softmaxModel = struct;
 % You need to compute softmaxModel using softmaxTrain on trainFeatures and
 % trainLabels
 
-
-
-
-
-
-
-
-
+lambda = 1e-4;
+[softmaxModel] = softmaxTrain(hiddenSize, numLabels, lambda, trainFeatures, trainLabels, options);
 
 %% -----------------------------------------------------
 
@@ -129,19 +124,7 @@ softmaxModel = struct;
 % Compute Predictions on the test set (testFeatures) using softmaxPredict
 % and softmaxModel
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+pred = softmaxPredict(softmaxModel, testFeatures);
 
 %% -----------------------------------------------------
 

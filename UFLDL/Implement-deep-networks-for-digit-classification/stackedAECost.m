@@ -61,19 +61,32 @@ groundTruth = full(sparse(labels, 1:M, 1));
 %                match exactly that of the size of the matrices in stack.
 %
 
+depth = numel(stack);
+a = cell(depth + 1, 1);
+a{1} = data;
+for i = 1 : 1 : depth
+    a{i + 1} = sigmoid(bsxfun(@plus, stack{i}.w * a{i}, stack{i}.b));
+end
 
+softmaxM = softmaxTheta * a{depth + 1};
+softmaxM = bsxfun(@minus, softmaxM, max(softmaxM, [], 1)); 
+softmaxM = exp(softmaxM);  
+p = bsxfun(@rdivide, softmaxM, sum(softmaxM)); 
+cost = -sum(sum(groundTruth .* log(p))) / M + lambda * sum(sum(softmaxTheta.^2)) / 2;
+softmaxThetaGrad = - (groundTruth - p) * a{depth + 1}' / M + lambda * softmaxTheta;
 
+delta = cell(depth + 1, 1);
+delta{depth + 1} = -(softmaxTheta' * (groundTruth - p) .* ...
+    a{depth + 1} .* (1 - a{depth + 1}));
+for i = depth : -1 : 2
+    delta{i} = stack{i}.w' * delta{depth + 1} .* ...
+        a{depth} .* (1 - a{depth});
+end
 
-
-
-
-
-
-
-
-
-
-
+for i = depth : -1 : 1
+   stackgrad{i}.w = delta{i + 1} * a{i}' / M ;
+   stackgrad{i}.b = sum(delta{i + 1}, 2) / M;
+end
 
 % -------------------------------------------------------------------------
 

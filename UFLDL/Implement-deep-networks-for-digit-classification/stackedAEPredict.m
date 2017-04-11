@@ -24,15 +24,14 @@ stack = params2stack(theta(hiddenSize*numClasses+1:end), netconfig);
 %  Instructions: Compute pred using theta assuming that the labels start 
 %                from 1.
 
+depth = numel(stack);
+a = cell(depth + 1, 1);
+a{1} = data;
+for i = 1 : 1 : depth
+   a{i + 1} = sigmoid(bsxfun(@plus, stack{i}.w * a{i}, stack{i}.b)); 
+end
 
-
-
-
-
-
-
-
-
+[nop, pred] = max(softmaxTheta * a{depth + 1});
 
 % -----------------------------------------------------------
 

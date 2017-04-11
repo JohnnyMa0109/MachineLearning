@@ -1,4 +1,4 @@
-%% CS294A/CS294W Convolutional Neural Networks Exercise
+            %% CS294A/CS294W Convolutional Neural Networks Exercise
 
 %  Instructions
 %  ------------
@@ -14,7 +14,7 @@
 
 imageDim = 64;         % image dimension
 imageChannels = 3;     % number of channels (rgb, so 3)
-
+                                                                
 patchDim = 8;          % patch dimension
 numPatches = 50000;    % number of patches
 
@@ -41,7 +41,7 @@ poolDim = 19;          % dimension of pooling region
 optTheta =  zeros(2*hiddenSize*visibleSize+hiddenSize+visibleSize, 1);
 ZCAWhite =  zeros(visibleSize, visibleSize);
 meanPatch = zeros(visibleSize, 1);
-
+load STL10Features.mat
 
 % --------------------------------------------------------------------
 
